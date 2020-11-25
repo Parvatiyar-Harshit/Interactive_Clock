@@ -22,14 +22,22 @@ function whattime(){
 //function to append time to clock div 
 function starttheclock(){
 	var time = document.createElement('H1');
+	time.setAttribute("id", "borkerwatch");
 	time.setAttribute('style','color : red');
 	var t = document.createTextNode('['+whattime()+']');
 	time.appendChild(t);
 	document.getElementById('digiclock').appendChild(time);
-	setTimeout(function(){document.getElementById('digiclock').removeChild(time);},999);
 }
 
-setInterval(function(){starttheclock(); }, 1000); //loop to update time every second
+function updatetheclock(){
+	var time = document.getElementById('borkerwatch');
+	console.log(time);
+	var t= time.childNodes[0];
+	t.nodeValue='['+whattime()+']';
+}
+
+starttheclock();
+setInterval(function(){updatetheclock(); }, 1000); //loop to update time every second
 //implementing the alarm
 /*function printtime(hour){
 	console.log(hour);
